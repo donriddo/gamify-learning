@@ -1,39 +1,35 @@
 [![Coverage Status](https://coveralls.io/repos/github/donriddo/messaging-classes-vault/badge.svg?branch=main)](https://coveralls.io/github/donriddo/messaging-classes-vault?branch=main)
 
-# WTF API (Node.js, Express, TypeScript, Docker, MongoDB, Mongoose)
+# Gamify Learning API (Node.js, Express, TypeScript, Docker, MongoDB, Mongoose)
 
 ## Steps to run app
 
 1. Clone the repository
 
+2. Get a working `.env` file. There is a template to follow which is `.env.sample`
+
 ### If you want to run inside containers
 
-2. RUN `docker-compose up` - expects you to have docker installed
+3. RUN `docker-compose up` - expects you to have docker installed
 
 ### If not running inside containers
 
-2. `cd` into the cloned repo and RUN `yarn install` to install all the necessary dependencies
+3. `cd` into the cloned repo and RUN `yarn install` to install all the necessary dependencies
 
-4. Get a working `.env` file. There is a template to follow which is `.env.sample`
+4. Make sure you have MongoDB installed and running 
 
-5. Make sure you have MongoDB installed and running 
+5. RUN `yarn test` to run the tests.
 
-6. RUN `yarn test` to run the tests.
-
-7. RUN `yarn serve` to launch the app
+6. RUN `yarn serve` to launch the app
 
 
 ## How to use the app
-
-#### By default, *1542* classes have been seeded into the DB, so you can start testing right away
 
 ### GET ENDPOINTS
 
 [1] You can list assignments by calling `GET /api/assignments`
 
 [2] You can list classes by calling `GET /api/classes`
-
-[3] You can fuzzy-search classes by doing `GET /api/classes?$search=keyword`
 
 #### List of utility GET query parameters
 
@@ -44,8 +40,8 @@
   "data": [
     {
       "_id": "6077010debdb134a9c5fd3a7",
-      "key": "?",
-      "value": "I don't understand what you mean",
+      "title": "Physics",
+      "date": "2021-04-14T14:49:50.460Z",
       "assignment": "6077010debdb1369b95fd3a6",
       "createdAt": "2021-04-14T14:49:50.460Z",
       "updatedAt": "2021-04-14T14:49:50.460Z",
@@ -56,88 +52,43 @@
   "meta": {
     "limit": 1,
     "offset": 0,
-    "total": 1542
+    "total": 15
   }
 }
 ```
-
-- `$search=keyword` allows you perform fuzzy matching classObj key/value
 
 - `$offet=number` allows you to skip a number of records e.g `GET /api/classes?$offset=500`
 
 - `$limit=number` allows you specify how many records returned per API call e.g `GET /api/classes?$limit=100`
 
-- `$populate=comma,seperated,fields` allows you to populate a relation field e.g `/api/classes?$limit=1&$populate=assignment` will return
-```json
-{
-  "message": "Classes retrieved successfully",
-  "data": [
-    {
-      "_id": "6077010debdb134a9c5fd3a7",
-      "key": "?",
-      "value": "I don't understand what you mean",
-      "assignment": {
-        "_id": "6077010debdb1369b95fd3a6",
-        "email": "assignment@admin.user",
-        "createdAt": "2021-04-14T14:49:49.883Z",
-        "updatedAt": "2021-04-14T15:23:03.409Z",
-        "__v": 0,
-        "id": "6077010debdb1369b95fd3a6"
-      },
-      "createdAt": "2021-04-14T14:49:50.460Z",
-      "updatedAt": "2021-04-14T14:49:50.460Z",
-      "__v": 0,
-      "id": "6077010debdb134a9c5fd3a7"
-    }
-  ],
-  "meta": {
-    "limit": 1,
-    "offset": 0,
-    "total": 1542
-  }
-}
-```
-
 
 ### POST ENDPOINTS
 
-[1] To generate auth API key, do
-```json
-POST /api/assignments/generate-api-key
-
-{
-  "email": "you@domain.tld"
-}
-```
-
-[2] To create a new classObj
+[1] To create a new class
 ```json
 POST /api/classes
-HEADERS "x-api-key"="your-api-key"
 
 {
-	"key": "some-key",
-	"value": "some-value"
+	"title": "some-title",
+	"date": "some-date"
 }
 ```
 
 ### PUT ENDPOINTS
 
-[1] To update an classObj, do
+[1] To update an class, do
 ```json
 PUT /api/classes/:classId
-HEADERS "x-api-key"="your-api-key"
 
 {
-	"key": "some-new-key",
-	"value": "some-new-value"
+	"title": "some-new-title",
+	"date": "some-new-date"
 }
 ```
 
 ### DELETE ENDPOINTS
 
-[1] To delete an classObj, do
+[1] To delete an class, do
 ```json
 DELETE /api/classes/:classId
-HEADERS "x-api-key"="your-api-key"
 ```
