@@ -31,6 +31,8 @@
 
 [2] You can list classes by calling `GET /api/classes`
 
+[2] You can list upcomings by calling `GET /api/upcomings`
+
 #### List of utility GET query parameters
 
 ##### All list endpoints are paginated and will return a response with the format
@@ -74,9 +76,29 @@ POST /api/classes
 }
 ```
 
+[2] To create a new assignment
+```json
+POST /api/assignments
+
+{
+	"title": "some-title",
+	"date": "some-date"
+}
+```
+
+[3] To create a new upcoming
+```json
+POST /api/upcomings
+
+{
+	"title": "some-title",
+	"date": "some-date"
+}
+```
+
 ### PUT ENDPOINTS
 
-[1] To update an class, do
+[1] To update any of the above e.g a class, do
 ```json
 PUT /api/classes/:classId
 
@@ -88,7 +110,7 @@ PUT /api/classes/:classId
 
 ### DELETE ENDPOINTS
 
-[1] To delete an class, do
+[1] To delete any of the above e.g a class, do
 ```json
 DELETE /api/classes/:classId
 ```
