@@ -11,7 +11,7 @@ import setupDB from './setup/mongoose';
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(config.util.getEnv('PORT') || '12345');
+const port = normalizePort(process.env.PORT || config.util.getEnv('PORT') || '12345');
 app.set('port', port);
 
 /**
