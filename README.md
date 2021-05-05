@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/donriddo/messaging-classes-vault/badge.svg?branch=main)](https://coveralls.io/github/donriddo/messaging-classes-vault?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/donriddo/gamify-learning/badge.svg?branch=main)](https://coveralls.io/github/donriddo/gamify-learning?branch=main)
 
 # Gamify Learning API (Node.js, Express, TypeScript, Docker, MongoDB, Mongoose)
 
