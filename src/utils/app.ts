@@ -1,8 +1,7 @@
-import * as crypto from 'crypto';
 import * as createError from 'http-errors';
 import { omit } from 'lodash';
 import * as validator from 'lx-valid';
-import { createLogger, format, transports, remove } from 'winston';
+import { createLogger, transports } from 'winston';
 
 import * as config from '../../config';
 
@@ -22,13 +21,6 @@ const logger = createLogger({
   ],
   exitOnError: false,
 });
-
-export function generateApiKey(assignmentEmail) {
-  const secretKey = config.get('secretKey');
-  return crypto.createHmac('sha256', secretKey)
-    .update(JSON.stringify({ assignmentEmail, timestamp: Date.now() }))
-    .digest('hex');
-}
 
 export function validate(object, schema, options) {
   const fn = options.isUpdate ? validator.getValidationFunction() : validator.validate;
