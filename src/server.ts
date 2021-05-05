@@ -6,7 +6,6 @@ import app from './app';
 import * as http from 'http';
 import * as config from 'config';
 import setupDB from './setup/mongoose';
-import seeds from './db/seeds';
 
 /**
  * Get port from environment and store in Express.
@@ -92,4 +91,3 @@ setupDB()
   .catch((err) => {
     console.error(err);
   });
-seeds.run();
